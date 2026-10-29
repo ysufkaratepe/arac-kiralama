@@ -1,0 +1,15 @@
+# Derleme ciktilari
+build/
+*.exe
+*.o
+*.obj
+arac_kiralama
+test_arac_kiralama
+
+# Programin kaydettigi veri dosyalari
+araclar.txt
+test_araclar.txt
+
+# Editor ayarlari
+.vscode/
+.idea/
