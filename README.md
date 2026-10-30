@@ -1,8 +1,10 @@
-# Araç Kiralama Sistemi
+# Car Rental Management System
 
 ![build](https://github.com/ysufkaratepe/arac-kiralama/actions/workflows/build.yml/badge.svg)
 
-C++ ile yazılmış, konsolda çalışan bir araç kiralama yönetim sistemi. Araç ekleme, kiralama, iade ve arama işlemlerini yapar; veriler program kapandığında dosyaya kaydedilir.
+A console-based car rental management system written in C++17. It handles adding, renting, returning and searching cars, and saves all data to a file when the program closes. It started as a course assignment and was extended afterwards.
+
+> The program's menus are in Turkish.
 
 ```
 ===== ARAC KIRALAMA SISTEMI =====
@@ -22,54 +24,54 @@ No    Marka         Model         Gunluk (TL)   Durum
 2     Fiat          Egea          1500.00       Musait
 ```
 
-## Özellikler
+## Features
 
-- Araç ekleme, silme, kiralama ve iade
-- Tüm araçları veya sadece müsait olanları tablo halinde listeleme
-- Markaya göre arama (büyük/küçük harf duyarsız)
-- Kiradaki araçlardan beklenen toplam geliri hesaplama
-- Verilerin `araclar.txt` dosyasına kaydedilmesi ve açılışta geri yüklenmesi
-- Hatalı girişe karşı kontrol: sayı yerine harf girilirse program çökmez, tekrar sorar
-- Boşluk içeren marka/model desteği (ör. "Land Rover")
-- Birim testleri ve GitHub Actions ile Windows, Linux ve macOS'ta otomatik derleme
+- Add, remove, rent and return cars
+- List all cars or only available ones in a table
+- Search by brand (case-insensitive)
+- Calculate the expected revenue from currently rented cars
+- Data is saved to `araclar.txt` and loaded again on startup
+- Input validation: entering letters instead of numbers doesn't crash the program, it asks again
+- Brand and model names with spaces (e.g. "Land Rover")
+- Unit tests and automated builds on Windows, Linux and macOS with GitHub Actions
 
-## Derleme ve çalıştırma
+## Build and run
 
-**g++ ile:**
+**With g++:**
 
 ```bash
 g++ -std=c++17 -Iinclude src/*.cpp -o arac_kiralama
 ./arac_kiralama
 ```
 
-**CMake ile:**
+**With CMake:**
 
 ```bash
 cmake -B build
 cmake --build build
-ctest --test-dir build --output-on-failure   # testleri çalıştırır
+ctest --test-dir build --output-on-failure   # runs the tests
 ```
 
-## Proje yapısı
+## Project structure
 
 ```
 include/
-  Arac.hpp            Araç bilgilerini tutan yapı
-  AracKiralama.hpp    Araçları yöneten sınıf
+  Arac.hpp            Car data structure
+  AracKiralama.hpp    Class that manages the cars
 src/
-  AracKiralama.cpp    İş kuralları ve dosya işlemleri
-  main.cpp            Menü ve kullanıcı etkileşimi
+  AracKiralama.cpp    Business rules and file handling
+  main.cpp            Menu and user interaction
 tests/
   test_arac_kiralama.cpp
 ```
 
-İş kuralları (`AracKiralama` sınıfı) ekrana yazmaz ve klavyeden okumaz; sonuçları `Sonuc` yapısıyla döndürür. Menü ve giriş/çıkış `main.cpp` içindedir. Bu ayrım sayesinde kurallar testlerle doğrudan kontrol edilebiliyor.
+The business rules (`AracKiralama` class) never print to the screen or read from the keyboard; they return results in a `Sonuc` (result) struct. The menu and all input/output live in `main.cpp`. This separation makes it possible to test the rules directly.
 
-## Kullanılanlar
+## Tech
 
 C++17 · STL (`vector`, `algorithm`, `fstream`) · CMake · GitHub Actions
 
-## Geliştirici
+## Author
 
-**Yusuf Karatepe**, Bilgisayar Mühendisliği öğrencisi
+**Yusuf Karatepe**, Computer Engineering student
 [LinkedIn](https://www.linkedin.com/in/yusuf-karatepe-0720923a1/) · [GitHub](https://github.com/ysufkaratepe)
